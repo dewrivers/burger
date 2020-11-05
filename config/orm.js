@@ -34,7 +34,7 @@ let orm = {
      });
    },
     /* INSERT into the burgers table mysql Query*/
-   create: (table, columns, values, callback) => {
+   insertOne: (table, columns, values, callback) => {
        var Qstring = 'INSERT INTO' + table;
 
        Qstring += ' (';
@@ -54,7 +54,7 @@ let orm = {
        });
    },
    
-   update: (table, objColVals, condition, callback) => {
+   updateOne: (table, objColVals, condition, callback) => {
        var Qstring = 'UPDATE' + table;
 
        Qstring += ' SET ';
