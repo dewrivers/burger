@@ -3,7 +3,7 @@
 
 ### Description
 
-* Da Real Burger! is a restaurant app that lets users input the names of burgers they'd like to eat.
+* _Da Real Burger!_ is a restaurant app that lets users input the names of burgers they'd like to eat.
 * The app store every burger in a database, whether devoured or not.
   * This is a burger logger with **MySQL**, **Express**, **Handlebars** and a homemade **ORM**.
   * MySQL -> To query and route data in to the app
@@ -32,6 +32,9 @@
 
 ## Contact
 
-[GitHub](https://github.com/dewrivers)
+[Linkedln](https://www.linkedin.com/in/rocio-bautista-120a551a2/)
+[Email](rrocio46@yahoo.es)
+[FaceBook](https://www.facebook.com/rocio.rios.589)
+
 
 
