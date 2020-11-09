@@ -1,23 +1,20 @@
-let express = require('express');
-let expresshandlebars = require('express-handlebars');
-
-let PORT = process.env.PORT || 36900;
+let express = require("express");
+let expressHdbs = require("express-handlebars");
+let PORT = process.env.PORT || 7777;
 let app = express();
 
-app.use(express.static('publlic'));
+app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.engine("handlebars", expressHdbs ({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
+let routes = require("./controllers/burgers_controller");
 
-app.engine('hbs', expresshandlebars({
-    defaultLayout: 'main'}));
-app.set('view engine', 'hbs');
-let rutas = require('./controllers/bugers_controllers');
-//let rutas = require('./controllers/bugers_controllers.js');
-app.use(rutas);
+app.use(routes);
 
-app.listen(PORT,function(){
-    console.log('listening on port:%s', PORT);
+app.listen(PORT,() => {
+    console.log('Open Me on port:', PORT);
 });

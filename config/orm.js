@@ -1,77 +1,75 @@
-/* importing the connection.j into orm.js */
-let connection = require('./connection');
+/** Import require("./connection"); into orm.js */
+let connection = require("./connection");
 
-/* The next helper arrow function loops through and creates an array of question marks and turns it into a string. ["?", "?", "?"].toString() => "?,?,?"; */
-const makeQuestionMarks = (num) => {
-    let arr = [];
 
-    for (var i = 0; i < num; i++) {
-        arr.push('?');
-    }
-    return arr.toString();
+/*Helper arrow function loops through and creates an array of question marks 
+ and turns it into a string. ["?", "?", "?"].toString() => "?,?,?"; */
+const make_Q_marks = (num) => {
+  let arr = [];
+
+  for (var i = 0; i < num; i++) {
+    arr.push("?");
+  }
+  /** Return the array to a string*/
+  return arr.toString();
+
+}
+ 
+/* Helper arrow function to convert object key/value pairs to SQL syntax loop through the keys and push the value as a string into an array*/
+const objToSql = (ob) => {
+  let arr = [];
+
+  for (var key in ob) {
+    arr.push(key + "=" + ob[key]);
+  }
+
+  return arr.toString();
 }
 
-/* The next helper arrow function to convert object key/value pairs to SQL syntax and
-loops through the keys and push the key/value as a string into an array */
-const objToSql = (object) => {
-   let arr = [];
+/*These methods are use in order to retrieve and store data in to database.*/
+var orm = {
+  all: (tableInput, callback) => {
+    var QString = "SELECT * FROM " + tableInput + ";";
+    connection.query(QString, (err, result) => {
+      if (err) {
+        throw err;
+      }
+      callback(result);
+      console.table(result);
+    });
+    
+  },
+  
+  
+  /* We want to insert the values into the columns*/
+  insertOne: (table, columns, values, callback) => {
+    var QString = "INSERT INTO " + table + " (" + columns.toString() + ") "
+    + "VALUES (" + make_Q_marks(values.length) + ") ";
 
-   for (var key in object) {
-       arr.push(key + '=' + object[key]);
-   }
-   return arr.toString();
-}
+    console.table(QString);
+    
+    connection.query(QString, values, (err, results) => {
+      if (err) { throw err }
+      //console.table(results);
+      callback(results);
+      
+    });
+  },
 
-let orm = {
-    /* selectAll from the burgers table mysql Query*/
-   selectAll: (tableInput, callback) => {
-     var Qstring = 'SELECT * FROM' + tableInput + ';';
-     connection.query(Qstring, (err, res) => {
-         if (err) {
-             throw err;
-         }
-         callback(result);
-     });
-   },
-    /* INSERT into the burgers table mysql Query*/
-   insertOne: (table, columns, values, callback) => {
-       var Qstring = 'INSERT INTO' + table;
+  /* Columns and Values that we want to update */
+  updateOne: (table, objColVals, condition, callback) => {
+    var QString = "UPDATE " + table + " SET " + objToSql(objColVals) + " WHERE " + condition;
 
-       Qstring += ' (';
-       Qstring += columns.toString();
-       Qstring += ')';
-       Qstring += ' VALUES (';
-       Qstring += makeQuestionMarks(values.length);
-       Qstring += ') ';
-
-       console.log(Qstring);
-
-       connection.query(Qstring, values, (err, result) => {
-           if (err) {
-               throw err;
-           }
-           callback(result);
-       });
-   },
-   
-   updateOne: (table, objColVals, condition, callback) => {
-       var Qstring = 'UPDATE' + table;
-
-       Qstring += ' SET ';
-       Qstring += objToSql(objColVals);
-       Qstring += ' WHERE ';
-       Qstring += condition;
-
-       console.log(Qstring);
-       connection.query(Qstring, (err, result) => {
-           if (err) {
-               throw err;
-           }
-           callback(result);
-       });
-   }
-
+    console.log(QString);
+    
+    connection.query(QString, (err, results) => {
+      if (err) {
+        throw err;
+      }
+      callback(results);
+      console.table(results);
+    });
+  }
 };
-
 
 module.exports = orm;

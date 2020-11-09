@@ -9,12 +9,12 @@ const connection = mysql.createConnection({
 });
 
 
-connection.connect(function(err) {
+connection.connect((err) => {
   if (err) {
-    console.error("error connecting: " + err.stack);
+    console.log("error connecting: " + err);
     return;
   }
-  console.log("connected as id " + connection.threadId);
+  console.log("I am Connected to MySQL!!👌🏽");
 });
 
 module.exports = connection;
