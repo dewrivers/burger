@@ -28,7 +28,7 @@
 		<div class="col-md-6 text-center ">
 			  {{#each burger_data}}
 			  	{{#if this.devoured}}
-			  		<input class="form-control tag" type="text" placeholder="{{this.id}} . {{this.burger_name}}">
+			  		<input class="form-control devoured" type="text" placeholder="{{this.id}} . {{this.burger_name}}">
 				{{/if}}
 			  {{/each}}
 		</div>
