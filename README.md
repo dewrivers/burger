@@ -22,6 +22,8 @@
   
   * _Jose M. Vasconcellos_
   * _Rocio Rios_
+  
+- - -
 
 ## Tech Stack
 
@@ -29,12 +31,21 @@
   * CSS
   * JavaScript
   * Node
+  
+- - -
 
-## Contact
+### Video
+ * Demonstration of the app in full operation
+https://drive.google.com/file/d/1BrDsMlwGYiZV4lnP21cSLktnPMyXLHWo/view
+
+- - -
+
+### Go Live
+ * _**Try iT!!**_
+
+
+## Contact Me 🙂
 
 [Linkedln](https://www.linkedin.com/in/rocio-bautista-120a551a2/)
 [GitHub](https://github.com/dewrivers)
 [FaceBook](https://www.facebook.com/rocio.rios.589)
-
-
-
