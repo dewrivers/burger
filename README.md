@@ -18,7 +18,7 @@
 
 - - -
 
-## Contributions
+## Contributors
   
   * _Jose M. Vasconcellos_
   * _Rocio Rios_
